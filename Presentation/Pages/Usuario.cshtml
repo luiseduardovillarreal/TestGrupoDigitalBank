@@ -1,0 +1,50 @@
+﻿@page
+@model Presentacion.Pages.UsuarioModel
+@{
+    ViewData["Title"] = "Interfaz de usuario - Usuario";
+}
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <label for="names" class="form-label">Nombres completos: 
+                <span class="red-span">*</span></label>
+            <input type="text" id="names" class="form-control" aria-describedby="namesHelpBlock">
+            <div id="namesHelpBlock" class="form-text">
+                Digite sus nombres completos; nombres y apellidos.
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label for="dateOfBirth" class="form-label">
+                Fecha de nacimiento:
+                <span class="red-span">*</span>
+            </label>
+            <input type="date" id="dateOfBirth" class="form-control" aria-describedby="dateOfBirthHelpBlock">
+            <div id="dateOfBirthHelpBlock" class="form-text">
+                Seleccione aquí su fecha de nacimiento.
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="sex" class="form-label">
+                Sexo:
+                <span class="red-span">*</span>
+            </label>
+            <select id="sex" class="form-select" aria-describedby="sexHelpBlock">
+                <option value="">Seleccione...</option>
+            </select>
+            <div id="sexHelpBlock" class="form-text">
+                Seleccione aquí su sexualidad.
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <button type="button" asp-page-handler="SaveUser" class="btn btn-success">
+                Guardar
+            </button>
+        </div>
+    </div>
+</div>
