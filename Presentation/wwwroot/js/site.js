@@ -1,4 +1,11 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function loadEditModal(btn) {
+    document.getElementById('editId').value = btn.getAttribute('data-id');
+    document.getElementById('editNames').value = btn.getAttribute('data-names');
+    document.getElementById('editDateOfBirth').value = btn.getAttribute('data-dateofbirth');
+    document.getElementById('editIdGender').value = btn.getAttribute('data-idgender');
+}
 
-// Write your JavaScript code.
+function loadDeleteModal(btn) {
+    document.getElementById('deleteId').value = btn.getAttribute('data-id');
+    document.getElementById('deleteUserName').textContent = btn.getAttribute('data-names');
+}

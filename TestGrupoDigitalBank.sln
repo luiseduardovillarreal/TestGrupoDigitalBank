@@ -27,8 +27,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Business", "Business\", "{F
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{8B7C7681-1A31-42DA-9AA6-A41E6DE59A16}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,10 +41,6 @@ Global
 		{F22EBF54-BDD0-679F-BD47-BB5F26891B0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F22EBF54-BDD0-679F-BD47-BB5F26891B0F}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{F22EBF54-BDD0-679F-BD47-BB5F26891B0F}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{8B7C7681-1A31-42DA-9AA6-A41E6DE59A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8B7C7681-1A31-42DA-9AA6-A41E6DE59A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8B7C7681-1A31-42DA-9AA6-A41E6DE59A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8B7C7681-1A31-42DA-9AA6-A41E6DE59A16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

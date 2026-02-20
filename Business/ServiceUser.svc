@@ -1,0 +1,2 @@
+<%@ ServiceHost Language="C#" Debug="true" Service="UserService" 
+    Factory="MyUnityServiceHostFactory" CodeBehind="~/App_Code/Modules/User/Services/UserService.cs" %>

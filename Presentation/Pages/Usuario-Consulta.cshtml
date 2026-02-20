@@ -3,3 +3,149 @@
 @{
     ViewData["Title"] = "Interfaz de usuario - Usuario consulta";
 }
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombres completos</th>
+                            <th>Fecha de nacimiento</th>
+                            <th>Sexo</th>
+                            <th>Estado</th>
+                            <th>Creado el</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Users != null && Model.Users.Any())
+                        {
+                            foreach (var user in Model.Users)
+                            {
+                                <tr>
+                                    <td>@user.Names</td>
+                                    <td>@user.DateOfBirth.ToString("dd/MM/yyyy")</td>
+                                    <td>@user.Gender.Name</td>
+                                    <td>
+                                        @if (user.IsActive)
+                                        {
+                                            <span class="badge bg-success">Activo</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger">Inactivo</span>
+                                        }
+                                    </td>
+                                    <td>@user.CreatedAt.ToString("dd/MM/yyyy")</td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-warning btn-sm"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalEdit"
+                                            data-id="@user.Id"
+                                            data-names="@user.Names"
+                                            data-dateofbirth="@user.DateOfBirth.ToString("yyyy-MM-dd")"
+                                            data-idgender="@user.Gender.Id"
+                                            onclick="loadEditModal(this)">
+                                            <i class="bi bi-pencil-fill"></i> Editar
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalDelete"
+                                            data-id="@user.Id"
+                                            data-names="@user.Names"
+                                            onclick="loadDeleteModal(this)">
+                                            <i class="bi bi-trash-fill"></i> Eliminar
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="7" class="text-center text-muted">No hay usuarios registrados.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title" id="modalEditLabel">
+                    <i class="bi bi-pencil-fill"></i> Editar usuario
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <form method="post">
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <input type="hidden" id="editId" name="id" />
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="editNames" class="form-label">Nombres completos: <span class="red-span">*</span></label>
+                            <input type="text" id="editNames" name="names" class="form-control" required/>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="editDateOfBirth" class="form-label">Fecha de nacimiento: <span class="red-span">*</span></label>
+                            <input type="date" id="editDateOfBirth" name="dateOfBirth" class="form-control" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="editIdGender" class="form-label">Sexo: <span class="red-span">*</span></label>
+                            <select id="editIdGender" name="idGender" class="form-select" asp-items="Model.Genders" required>
+                                <option value="">Seleccione...</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle"></i> Cancelar
+                    </button>
+                    <button type="submit" asp-page-handler="UpdateUser" class="btn btn-warning">
+                        <i class="bi bi-save"></i> Guardar cambios
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="modalDeleteLabel">
+                    <i class="bi bi-exclamation-triangle-fill"></i> Confirmar eliminación
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <form method="post">
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <input type="hidden" id="deleteId" name="id" />
+                    <p>¿Desea en realidad eliminar al siguiente usuario?</p>
+                    <p class="fw-bold fs-5 text-center" id="deleteUserName"></p>
+                    <p class="text-muted text-center">Esta acción no se puede deshacer.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle"></i> Cancelar
+                    </button>
+                    <button type="submit" asp-page-handler="DeleteUser" class="btn btn-danger">
+                        <i class="bi bi-trash-fill"></i> Eliminar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
