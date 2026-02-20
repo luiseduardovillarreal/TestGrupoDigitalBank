@@ -8,15 +8,17 @@
     git clone https://github.com/luiseduardovillarreal/TestGrupoDigitalBank.git
 ```
 
-## Paso 2: Configurar la conexión de la base de datos
+## Paso 2: Movernos a la rama dev.
+
+## Paso 3: Configurar la conexión de la base de datos
 Edita el archivo `web.config del proyecto WCF`:
 ```bash
     Conexión a la DB (En mi caso local con Autenticación de usuario): 
 		<add name="connTestGrupoDigitalBankDbContext" connectionString="Data Source=localhost\SQLEXPRESS; Initial Catalog=TestGrupoDigitalBank; User ID=testGrupoDigitalBank; Password=123456; MultipleActiveResultSets=True" providerName="System.Data.SqlClient" />
 ```
 
-## Paso 3: Limpiar y recompilar la solución.
+## Paso 4: Limpiar y recompilar la solución.
 
-## Paso 4: Iniciar los proyectos (Se abrirán en el navegador predeterminado).
+## Paso 5: Iniciar los proyectos (Se abrirán en el navegador predeterminado).
 
 ## ¡Listo!
